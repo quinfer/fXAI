@@ -5,18 +5,28 @@ format: pdf
 bibliography: references.bib
 ---
 
-```{R}
+```{r}
 library(reticulate)
-#reticulate::conda_create(envname = "XAI",packages = c('scikit-learn','shap'))
+install_miniconda(force = TRUE)
+conda_create(envname = "XAI")
+use_condaenv("XAI")
+#py_install(packages = c("scikit-learn","shap"),envname = "XAI")
 use_condaenv(condaenv = "XAI")
 ```
 
+# Introduction
 
-## Introduction
+The rapid digital transformation of the finance industry over the past few decades has been predominantly driven by the integration of Artificial Intelligence (AI) and machine learning technologies. These technologies have heralded a new era in finance, catalyzing innovations in trading, risk management, fraud detection, customer service, and a plethora of other areas, bringing significant changes to business models, operations, and services [@Arner2020]. Today, financial institutions leverage these advanced technologies to generate insights, automate processes, and improve decision-making.
 
-Artificial Intelligence (AI) is transforming the world of finance at an unprecedented rate. An increasing number of financial institutions are integrating AI and machine learning technologies into their operations to improve performance and create innovative financial products [@Arner2020]. However, a significant challenge persists, particularly around the transparency and interpretability of AI decision-making - this has given rise to the field of Explainable Artificial Intelligence (XAI). This paper provides a critical analysis of XAI in finance, tracing its evolution, examining its current applications, and envisioning its future prospects.
+Despite the revolutionary potential of AI, its application in finance is not devoid of challenges. A significant issue arises around the transparency and interpretability of AI decision-making, often described as the 'black box' problem. This term refers to the difficulty in understanding how complex AI and machine learning models arrive at their decisions [@Dhar2018]. This opacity presents substantial ethical, legal, and practical challenges, especially in an industry as regulated and risk-averse as finance [@Bhatt2020].
 
-## Past
+In response to these concerns, the field of Explainable Artificial Intelligence (XAI) has emerged with an aim to make AI's decision-making process more transparent and comprehensible to human users [@Molnar2020]. This development is particularly crucial in the financial sector, where understanding the rationale behind decisions can have enormous implications for trust, compliance, risk management, and customer satisfaction.
+
+This paper aims to critically analyze the role of XAI in finance, tracing its historical development, examining its current applications, and exploring its future prospects. By providing a comprehensive review of XAI in the context of finance, we hope to shed light on its importance and potential for the industry while addressing ongoing challenges and areas for future research.
+
+# Literature review
+
+## Past: Early Application of AI in Finance
 
 The integration of AI in finance has a history that dates back to the latter half of the 20th century. Initially, financial institutions deployed rule-based systems for a variety of functions, such as automated trading and risk analysis. These were the earliest forms of AI applied to finance and were quite simplistic compared to today's advanced systems.
 
@@ -30,7 +40,7 @@ The transition from rule-based systems to machine learning models marked a pivot
 
 In summary, the past of AI in finance was marked by the transition from transparent but inflexible rule-based systems to powerful but opaque machine learning models. The need to address the transparency issues introduced by machine learning has led to the development of explainable AI, the current and future state of which will be discussed in the following sections.
 
-## Present
+## Present: The Rise of Machine Learning and XAI
 
 Certainly, here's an expanded version of the "Present" section:
 
@@ -50,7 +60,7 @@ Moreover, explainability is not just a technical problem but also a human-center
 
 In conclusion, the present state of XAI in finance is marked by considerable advancements, but also by ongoing challenges. The shift towards more transparent and interpretable AI models is underway, with various methods being developed and applied. However, achieving a balance between the complexity (and thereby, the performance) of models and their interpretability remains a significant hurdle. As we look towards the future, it is crucial that these challenges are addressed, and XAI continues to evolve to meet the demands of transparency and interpretability in the financial industry.
 
-## Prospects
+## Prospects: The Future of XAI in Finance
 
 As we move into the future, the demand for transparency and interpretability in AI systems within the finance sector is expected to grow. The prospective advancements and challenges in the field of XAI reflect this.
 
@@ -63,6 +73,8 @@ Moreover, as AI and XAI become more commonplace in finance, it's likely that reg
 However, implementing such regulations comes with its own challenges. Regulators will need to define what constitutes an 'explanation' and a 'decision' in the context of AI. They will also need to set standards for how detailed and understandable these explanations must be [@Edwards2017].
 
 In summary, the future of XAI in finance is ripe with opportunities for making AI decision-making more transparent and accountable. However, it also presents challenges that need to be addressed through continued research, development, and thoughtful regulation.
+
+# Methodology
 
 ## Econometrics and XAI
 
@@ -84,7 +96,7 @@ In conclusion, XAI holds considerable potential in improving econometrics, parti
 
 Absolutely, let's explore the analogy between Shapley values and the coefficients in a linear regression model.
 
-In a linear regression model, each predictor variable is assigned a coefficient that represents its partial effect on the outcome variable, controlling for all other predictors. The coefficient can be interpreted as the expected change in the outcome variable for a one-unit change in the predictor, holding all other predictors constant. 
+In a linear regression model, each predictor variable is assigned a coefficient that represents its partial effect on the outcome variable, controlling for all other predictors. The coefficient can be interpreted as the expected change in the outcome variable for a one-unit change in the predictor, holding all other predictors constant.
 
 Analogously, the Shapley value for a player in a cooperative game represents the average contribution of the player to the worth of all possible coalitions that the player can be a part of. The Shapley value takes into account all possible ways in which the coalition can be formed and averages over them.
 
@@ -100,14 +112,14 @@ In the context of explainable AI, the Shapley value concept has been applied to 
 
 Sure, let's consider a simple cooperative game involving three players: A, B, and C. The worth of each coalition of players is given by a characteristic function v:
 
-- v({}) = 0 (worth of the empty coalition)
-- v({A}) = 100
-- v({B}) = 200
-- v({C}) = 300
-- v({A, B}) = 400
-- v({A, C}) = 500
-- v({B, C}) = 600
-- v({A, B, C}) = 800
+-   v({}) = 0 (worth of the empty coalition)
+-   v({A}) = 100
+-   v({B}) = 200
+-   v({C}) = 300
+-   v({A, B}) = 400
+-   v({A, C}) = 500
+-   v({B, C}) = 600
+-   v({A, B, C}) = 800
 
 We want to distribute the total worth of the grand coalition (v({A, B, C}) = 800) among the players in a way that reflects their contribution to the coalition.
 
@@ -189,7 +201,6 @@ Let's consider a simple three-factor model (size, value, and momentum factors) t
 
 First, let's install the necessary packages (if not already installed):
 
-
 Now let's import the necessary packages and generate some simulated data:
 
 ```{python}
@@ -260,7 +271,7 @@ However, in real-world scenarios where the relationship between factors and asse
 
 Sure, let's modify the above example to include non-linear and interaction effects. In this modified example, the true model is a polynomial model that includes square terms and an interaction term.
 
-```python
+``` python
 # Generate simulated asset returns with non-linear and interaction effects
 returns = 0.1*size + 0.2*value + 0.3*momentum + 0.4*size**2 + 0.5*value**2 + 0.6*momentum**2 + 0.7*size*value + np.random.normal(0, 0.1, n)
 
@@ -278,7 +289,7 @@ y = data['Return']
 
 Next, let's fit a linear regression model to the data:
 
-```python
+``` python
 lin_reg = LinearRegression().fit(X, y)
 
 # Print coefficients
@@ -290,7 +301,7 @@ print('Momentum:', lin_reg.coef_[2])
 
 Now let's fit a Random Forest model to the data and compute SHAP values:
 
-```python
+``` python
 # Fit model
 rf = RandomForestRegressor(n_estimators=100, random_state=0).fit(X, y)
 
@@ -319,4 +330,4 @@ Looking to the future, it is expected that XAI will continue to evolve, integrat
 
 In conclusion, XAI represents a critical frontier in the integration of AI within finance. As we continue to navigate this frontier, it is vital that we remain committed to advancing the field, improving the transparency and interpretability of AI systems, and addressing the ethical, legal, and practical challenges that arise along the way. The journey to fully explainable AI in finance may be complex and fraught with challenges, but it is a journey that holds considerable promise for the future of the industry.
 
-##  References
+## References
