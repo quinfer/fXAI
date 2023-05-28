@@ -7,11 +7,11 @@ bibliography: references.bib
 
 ```{r}
 library(reticulate)
-install_miniconda(force = TRUE)
-conda_create(envname = "XAI")
+#install_miniconda(force = TRUE)
+#conda_create(envname = "XAI")
 use_condaenv("XAI")
 #py_install(packages = c("scikit-learn","shap"),envname = "XAI")
-use_condaenv(condaenv = "XAI")
+# use_condaenv(condaenv = "XAI")
 ```
 
 # Introduction
@@ -127,7 +127,7 @@ The Shapley value is one way to do this. For each player, it computes the averag
 
 Here is a Python function to compute the Shapley value for this game:
 
-```{python}
+```python
 import itertools
 
 def shapley_value(player, players, v):
@@ -147,7 +147,7 @@ def shapley_value(player, players, v):
             coalition = [player]
         else:
             coalition = list(permutation[:position + 1])
-        marginal_contribution = v(coalition) - v(list(permutation[:position]))
+        marginal_contribution = vv(coalition) - vv(list(permutation[:position]))
         
         # Add the marginal contribution to the Shapley value
         shapley_value += marginal_contribution
@@ -158,7 +158,7 @@ def shapley_value(player, players, v):
     return shapley_value
 
 # Define the characteristic function
-v = {
+vv = {
     frozenset(): 0,
     frozenset(['A']): 100,
     frozenset(['B']): 200,
@@ -172,12 +172,75 @@ v = {
 # Compute the Shapley value for each player
 players = ['A', 'B', 'C']
 for player in players:
-    print(f'Shapley value for player {player}: {shapley_value(player, players, v)}')
+    print(f'Shapley value for player {player}: {shapley_value(player, players, vv)}')
 ```
 
+
+```{r}
+library(gtools)
+n=3
+player="B"
+perms=permutations(n, n, players)
+for (permutation in perms) {
+  cat("perm=",permutation,"\n")
+  cat("Position =",match(player, permutation),"\n")
+}
+
+shapley_value <- function(player, players, v) {
+  # Get the number of players
+  n <- length(players)
+  
+  # Initialize the Shapley value
+  shapley_value <- 0
+  
+  # Consider all permutations of the players
+  for (permutation in permutations(n, n, players)) {
+    # Find the position of the player in this permutation
+    position <- match(player, permutation)
+    print(position)
+    # Compute the marginal contribution of the player
+    if (position == 1) {
+      coalition <- player
+    } else {
+      coalition <- permutation[1:position]
+    }
+    coalition_key <- toString(sort(coalition))
+    position_key <- toString(sort(permutation[1:(position-1)]))
+    marginal_contribution <- v[[coalition_key]] - v[[position_key]]
+    
+    # Add the marginal contribution to the Shapley value
+    shapley_value <- shapley_value + marginal_contribution
+  }
+  
+  # Divide by n! to get the average marginal contribution
+  shapley_value <- shapley_value / factorial(n)
+  
+  return(shapley_value)
+}
+
+# Define the characteristic function
+v <- list(
+  "A" = 100,
+  "B" = 200,
+  "C" = 300,
+  "A, B" = 400,
+  "A, C" = 500,
+  "B, C" = 600,
+  "A, B, C" = 800
+)
+
+# Compute the Shapley value for each player
+players <- c('A', 'B', 'C')
+for (player in players) {
+  print(player)
+  print(paste('Shapley value for player', player, ':', shapley_value(player, players, v)))
+}
+```
+
+Here, the `permutations` function from the `gtools` package is used to generate all possible permutations of the players. We use `match` to find the position of the player in the current permutation, and then use a list of strings `v` to look up the values of the characteristic function for each coalition. The keys for the list `v` are created by sorting the players in the coalition and then converting to a string. The 'NULL' string is used to represent the empty set.
 This will print the Shapley value for each player.
 
-### The analogy of Shapley values and regression coefficients
+### Confronting regression coefficients using XAI
 
 Absolutely, let's explore the analogy between Shapley values and the coefficients in a linear regression model.
 
