@@ -7,10 +7,10 @@ bibliography: references.bib
 
 ```{r}
 library(reticulate)
-install_miniconda(force = TRUE)
-conda_create(envname = "XAI")
-use_condaenv("XAI")
-#py_install(packages = c("scikit-learn","shap"),envname = "XAI")
+# install_miniconda()
+# conda_create(envname = "XAI")
+# conda_install(envname = "XAI",packages = c("shap"))
+# py_install(packages = c("scikit-learn","shap"),envname = "XAI")
 use_condaenv(condaenv = "XAI")
 ```
 
