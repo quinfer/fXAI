@@ -125,120 +125,6 @@ We want to distribute the total worth of the grand coalition (v({A, B, C}) = 800
 
 The Shapley value is one way to do this. For each player, it computes the average marginal contribution of the player to all possible coalitions. This is done by considering all permutations of the players and for each permutation, adding up the marginal contributions of the player when they join the coalition.
 
-Here is a Python function to compute the Shapley value for this game:
-
-```python
-import itertools
-
-def shapley_value(player, players, v):
-    # Get the number of players
-    n = len(players)
-    
-    # Initialize the Shapley value
-    shapley_value = 0
-    
-    # Consider all permutations of the players
-    for permutation in itertools.permutations(players):
-        # Find the position of the player in this permutation
-        position = permutation.index(player)
-        
-        # Compute the marginal contribution of the player
-        if position == 0:
-            coalition = [player]
-        else:
-            coalition = list(permutation[:position + 1])
-        marginal_contribution = vv(coalition) - vv(list(permutation[:position]))
-        
-        # Add the marginal contribution to the Shapley value
-        shapley_value += marginal_contribution
-        
-    # Divide by n! to get the average marginal contribution
-    shapley_value /= np.math.factorial(n)
-    
-    return shapley_value
-
-# Define the characteristic function
-vv = {
-    frozenset(): 0,
-    frozenset(['A']): 100,
-    frozenset(['B']): 200,
-    frozenset(['C']): 300,
-    frozenset(['A', 'B']): 400,
-    frozenset(['A', 'C']): 500,
-    frozenset(['B', 'C']): 600,
-    frozenset(['A', 'B', 'C']): 800
-}
-
-# Compute the Shapley value for each player
-players = ['A', 'B', 'C']
-for player in players:
-    print(f'Shapley value for player {player}: {shapley_value(player, players, vv)}')
-```
-
-
-```{r}
-library(gtools)
-n=3
-player="B"
-perms=permutations(n, n, players)
-for (permutation in perms) {
-  cat("perm=",permutation,"\n")
-  cat("Position =",match(player, permutation),"\n")
-}
-
-shapley_value <- function(player, players, v) {
-  # Get the number of players
-  n <- length(players)
-  
-  # Initialize the Shapley value
-  shapley_value <- 0
-  
-  # Consider all permutations of the players
-  for (permutation in permutations(n, n, players)) {
-    # Find the position of the player in this permutation
-    position <- match(player, permutation)
-    print(position)
-    # Compute the marginal contribution of the player
-    if (position == 1) {
-      coalition <- player
-    } else {
-      coalition <- permutation[1:position]
-    }
-    coalition_key <- toString(sort(coalition))
-    position_key <- toString(sort(permutation[1:(position-1)]))
-    marginal_contribution <- v[[coalition_key]] - v[[position_key]]
-    
-    # Add the marginal contribution to the Shapley value
-    shapley_value <- shapley_value + marginal_contribution
-  }
-  
-  # Divide by n! to get the average marginal contribution
-  shapley_value <- shapley_value / factorial(n)
-  
-  return(shapley_value)
-}
-
-# Define the characteristic function
-v <- list(
-  "A" = 100,
-  "B" = 200,
-  "C" = 300,
-  "A, B" = 400,
-  "A, C" = 500,
-  "B, C" = 600,
-  "A, B, C" = 800
-)
-
-# Compute the Shapley value for each player
-players <- c('A', 'B', 'C')
-for (player in players) {
-  print(player)
-  print(paste('Shapley value for player', player, ':', shapley_value(player, players, v)))
-}
-```
-
-Here, the `permutations` function from the `gtools` package is used to generate all possible permutations of the players. We use `match` to find the position of the player in the current permutation, and then use a list of strings `v` to look up the values of the characteristic function for each coalition. The keys for the list `v` are created by sorting the players in the coalition and then converting to a string. The 'NULL' string is used to represent the empty set.
-This will print the Shapley value for each player.
 
 ### Confronting regression coefficients using XAI
 
@@ -334,7 +220,7 @@ However, in real-world scenarios where the relationship between factors and asse
 
 Sure, let's modify the above example to include non-linear and interaction effects. In this modified example, the true model is a polynomial model that includes square terms and an interaction term.
 
-``` python
+``` {python}
 # Generate simulated asset returns with non-linear and interaction effects
 returns = 0.1*size + 0.2*value + 0.3*momentum + 0.4*size**2 + 0.5*value**2 + 0.6*momentum**2 + 0.7*size*value + np.random.normal(0, 0.1, n)
 
@@ -352,7 +238,7 @@ y = data['Return']
 
 Next, let's fit a linear regression model to the data:
 
-``` python
+```{python}
 lin_reg = LinearRegression().fit(X, y)
 
 # Print coefficients
@@ -364,7 +250,7 @@ print('Momentum:', lin_reg.coef_[2])
 
 Now let's fit a Random Forest model to the data and compute SHAP values:
 
-``` python
+``` {python}
 # Fit model
 rf = RandomForestRegressor(n_estimators=100, random_state=0).fit(X, y)
 
@@ -380,6 +266,57 @@ print('Momentum:', np.mean(np.abs(shap_values.values[:, 2])))
 ```
 
 In this case, the linear regression coefficients fail to capture the non-linear and interaction effects. The Random Forest model, which can capture these complex relationships, should provide better predictive accuracy. The SHAP values for the Random Forest model offer a more nuanced understanding of feature contributions, taking into account the non-linear and interaction effects.
+
+Sure, let's create a scenario where the relationship between the factors and the return is non-linear. This is where Shapley values can potentially provide a more nuanced view compared to linear regression coefficients.
+
+We will use a similar setup as before but introduce some interaction and non-linearity in how the factors influence the return.
+
+```{python}
+import numpy as np
+import pandas as pd
+from sklearn.ensemble import RandomForestRegressor
+import shap
+
+np.random.seed(0)
+
+# Create a sample dataframe with 2 factors and a response
+n = 1000
+Factor1 = np.random.rand(n)
+Factor2 = np.random.rand(n)
+Noise = 0.1*np.random.randn(n)
+
+# Assume factors interact and have a non-linear relationship with the response
+Return = 3*Factor1**2 + 5*np.exp(Factor2) + 2*Factor1*Factor2 + Noise
+
+data = pd.DataFrame({
+    'Return': Return,
+    'Factor1': Factor1,
+    'Factor2': Factor2
+})
+
+# Fit a random forest regression model
+model = RandomForestRegressor(n_estimators=100)
+model.fit(data[['Factor1', 'Factor2']], data['Return'])
+
+# Calculate Shapley values
+explainer = shap.Explainer(model, data[['Factor1', 'Factor2']])
+shap_values = explainer(data[['Factor1', 'Factor2']])
+
+# Print the mean absolute Shapley values for each feature
+print("\nMean absolute Shapley Values:")
+print("Factor1: ", np.mean(np.abs(shap_values.values[:,0])))
+print("Factor2: ", np.mean(np.abs(shap_values.values[:,1])))
+```
+
+In this example, we use a random forest regressor, which can handle non-linear and interaction effects among factors. This model is more complex than a simple linear regression, and the "coefficients" or feature importances do not give a clear measure of the contribution of each factor, especially when there is interaction and non-linearity.
+
+After training the model, we compute Shapley values for each observation. Shapley values have the potential to provide a more nuanced view of the importance of each factor, as they account for the effect of each feature in all possible subsets of features. This can be especially helpful in scenarios where factors have interaction effects or contribute to the response in a non-linear way.
+
+As in the previous example, we calculate the mean absolute Shapley value for each factor across all observations. In a situation with interaction and non-linearity, these values provide a clearer picture of the average contribution of each factor to the return across all possible orders of inputting the factors into the model.
+
+The ability of Shapley values to handle interaction and non-linear effects is a powerful feature and can be crucial in scenarios where linear regression coefficients fail to provide a clear understanding of feature importance. This is especially true in finance, where the relationship between variables can often be complex and non-linear.
+
+Please note, you need to install the `shap` library if it is not already installed. You can do it using `pip install shap` in your terminal.
 
 ## Conclusion
 
