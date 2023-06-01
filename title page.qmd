@@ -1,0 +1,29 @@
+---
+title: "Explaining AI in Finance: Past, Present, Prospects"
+author: 
+  - name: Barry Quinn
+    orcid: 0000-0002-8637-9060
+    email: b.quinn@qub.ac.uk
+    affiliations:
+      - name: Queen's Business School, Belfast
+      - name: Finance and AI lab
+format: 
+  pdf: 
+    keep-tex: true
+    template-partials:
+      - title.tex
+    include-in-header:
+      text: |
+        \usepackage[noblocks]{authblk}
+        \renewcommand*{\Authsep}{, }
+        \renewcommand*{\Authand}{, }
+        \renewcommand*{\Authands}{, }
+        \renewcommand\Affilfont{\small}
+bibliography: references.bib
+execute: 
+  warning: false
+  message: false
+  echo: fenced
+abstract-title: "Abstract"
+abstract: "The finance sector has witnessed a significant transformation in its operational strategy due to the advent of Artificial Intelligence (AI). However, the interpretability of AI, or explainable AI (XAI), remains a crucial requirement for its broader acceptance and effective utilization, particularly in the highly regulated financial industry. This paper reviews the journey of AI in finance, shedding light on its origins, current applications, and future potential, with a keen focus on the role of XAI. The evolution of AI in finance is traced, highlighting early statistical techniques to the current sophisticated machine learning algorithms. Notably, the limitations of traditional models in interpreting complex, non-linear relationships and interactions between financial variables are explored.  In the current context, XAI's role is evaluated concerning popular financial applications such as credit scoring, fraud detection, and financial advisory. We delve into how XAI techniques like Shapley values can lead to superior inference compared to traditional linear regression models, especially in non-linear and high-dimensional situations.  Furthermore, the future prospects section emphasizes the opportunities and challenges faced by XAI in finance, particularly regarding the upcoming EU regulations. We emphasize the necessity of continued research in XAI to bridge the gap between complex model decision-making processes and human interpretability.  The paper exemplifies the effectiveness of XAI in finance through various simulated examples, contrasting the explanatory power of Shapley values with traditional regression coefficients. These simulations clearly demonstrate the potential of XAI in providing more nuanced and accurate interpretations of model decisions in complex, non-linear financial scenarios.  Our paper underscores the significant role that XAI can play in boosting confidence in AI systems within the finance industry, paving the way for more responsible and informed decision-making in this sector."
+---

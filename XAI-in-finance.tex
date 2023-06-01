@@ -203,7 +203,7 @@
 \urlstyle{same} % disable monospaced font for URLs
 \hypersetup{
   pdftitle={Explaining AI in Finance: Past, Present, Prospects},
-  pdfauthor={Barry Quinn},
+  pdfauthor={NO AUTHOR},
   colorlinks=true,
   linkcolor={blue},
   filecolor={Maroon},
@@ -212,27 +212,37 @@
   pdfcreator={LaTeX via pandoc}}
 
 \title{Explaining AI in Finance: Past, Present, Prospects}
-\author{Barry Quinn}
+\author{NO AUTHOR}
 \date{}
 
 \begin{document}
 \maketitle
-\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[frame hidden, borderline west={3pt}{0pt}{shadecolor}, boxrule=0pt, breakable, interior hidden, enhanced, sharp corners]}{\end{tcolorbox}}\fi
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\InformationTok{\textasciigrave{}\textasciigrave{}\textasciigrave{}\{r\}}
-\FunctionTok{library}\NormalTok{(reticulate)}
-\CommentTok{\# install\_miniconda()}
-\CommentTok{\# conda\_create(envname = "XAI")}
-\CommentTok{\# conda\_install(envname = "XAI",packages = c("shap"))}
-\CommentTok{\#conda\_install(envname = "XAI",channel="numba",packages = c("llvmlite"))}
-\CommentTok{\#py\_install(packages = c("scikit{-}learn","shap"),envname = "XAI")}
-\CommentTok{\#py\_install(packages = c("llvmlite"),envname = "XAI")}
-\FunctionTok{use\_condaenv}\NormalTok{(}\AttributeTok{condaenv =} \StringTok{"XAI"}\NormalTok{)}
-\InformationTok{\textasciigrave{}\textasciigrave{}\textasciigrave{}}
-\end{Highlighting}
-\end{Shaded}
+\begin{abstract}
+The proliferation of Artificial Intelligence (AI) in finance has
+revolutionized operational strategies. Yet, the challenge of
+interpretability, encapsulated in the concept of explainable AI (XAI),
+remains pivotal for its comprehensive adoption. This paper navigates the
+evolution of AI in finance, demonstrating the role and potential of XAI
+within this transformation. We trace the journey from primitive
+statistical methods to modern machine learning, addressing traditional
+models' inability to interpret intricate non-linear relationships in
+financial variables. We delve into XAI's role in prevalent financial
+applications like credit scoring and fraud detection, demonstrating how
+methods like Shapley values provide superior, nuanced inference compared
+to traditional linear regression models in complex scenarios. A vital
+discussion is the implications of upcoming EU regulations, emphasizing
+the need for further XAI research to bridge the gap between intricate
+model decision-making and human interpretability. This narrative is
+bolstered by several simulated examples, comparing the explanatory power
+of Shapley values with conventional regression coefficients in the
+context of asset pricing, demonstrating the effectiveness of XAI in
+financE In conclusion, the paper accentuates the crucial role of XAI in
+enhancing trust in AI systems within finance, promoting more informed
+and responsible decision-making. Through this, we underline the promise
+of XAI as a facilitator of transparency, reliability, and ultimately,
+the wider acceptance of AI in the finance industry.
+\end{abstract}
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[frame hidden, enhanced, sharp corners, interior hidden, borderline west={3pt}{0pt}{shadecolor}, boxrule=0pt, breakable]}{\end{tcolorbox}}\fi
 
 \hypertarget{introduction}{%
 \section{Introduction}\label{introduction}}
@@ -240,36 +250,35 @@
 The rapid digital transformation of the finance industry over the past
 few decades has been predominantly driven by the integration of
 Artificial Intelligence (AI) and machine learning technologies. These
-technologies have heralded a new era in finance, catalyzing innovations
-in trading, risk management, fraud detection, customer service, and a
-plethora of other areas, bringing significant changes to business
-models, operations, and services (Arner, Barberis, and Buckley 2020).
-Today, financial institutions leverage these advanced technologies to
-generate insights, automate processes, and improve decision-making.
+technologies have heralded a new era in finance, catalysing innovations
+in trading, risk management, fraud detection, customer service, and many
+other areas, bringing significant changes to business models,
+operations, and services (Arner, Barberis, and Buckley 2020). Today,
+financial institutions leverage these advanced technologies to generate
+insights, automate processes, and improve decision-making.
 
 Despite the revolutionary potential of AI, its application in finance is
-not devoid of challenges. A significant issue arises around the
-transparency and interpretability of AI decision-making, often described
-as the `black box' problem. This term refers to the difficulty in
-understanding how complex AI and machine learning models arrive at their
-decisions (Dhar 2018). This opacity presents substantial ethical, legal,
-and practical challenges, especially in an industry as regulated and
-risk-averse as finance (Bhatt, Xiang, and Sharma 2020).
+not devoid of challenges. For example, a significant issue arises around
+the transparency and interpretability of AI decision-making, often
+described as the `black box' problem. This term refers to the difficulty
+in understanding how complex AI and machine learning models arrive at
+their decisions (Dhar 2018). This opacity presents substantial ethical,
+legal, and practical challenges, especially in an industry as regulated
+and risk-averse as finance (Bhatt, Xiang, and Sharma 2020).
 
-In response to these concerns, the field of Explainable Artificial
-Intelligence (XAI) has emerged with an aim to make AI's decision-making
-process more transparent and comprehensible to human users (Molnar
-2020). This development is particularly crucial in the financial sector,
-where understanding the rationale behind decisions can have enormous
-implications for trust, compliance, risk management, and customer
-satisfaction.
+In response to these concerns, Explainable Artificial Intelligence (XAI)
+has emerged to make AI's decision-making process more transparent and
+understandable to human users (Molnar 2020). This development is
+particularly crucial in the financial sector, where understanding the
+rationale behind decisions can have enormous implications for trust,
+compliance, risk management, and customer satisfaction.
 
-This paper aims to critically analyze the role of XAI in finance,
+This paper aims to critically analyse the role of XAI in finance,
 tracing its historical development, examining its current applications,
-and exploring its future prospects. By providing a comprehensive review
-of XAI in the context of finance, we hope to shed light on its
-importance and potential for the industry while addressing ongoing
-challenges and areas for future research.
+and exploring its prospects. By providing a comprehensive review of XAI
+in the context of finance, we hope to shed light on its importance and
+potential for the industry while addressing ongoing challenges and areas
+for future research.
 
 \hypertarget{literature-review}{%
 \section{Literature review}\label{literature-review}}
@@ -280,16 +289,16 @@ Finance}\label{past-early-application-of-ai-in-finance}}
 
 The integration of AI in finance has a history that dates back to the
 latter half of the 20th century. Initially, financial institutions
-deployed rule-based systems for a variety of functions, such as
-automated trading and risk analysis. These were the earliest forms of AI
-applied to finance and were quite simplistic compared to today's
-advanced systems.
+deployed rule-based systems for various functions, such as automated
+trading and risk analysis. These were the earliest forms of AI applied
+to finance and were quite simplistic compared to today's advanced
+systems.
 
 These early AI systems were based on sets of pre-programmed rules, often
-developed by human experts, and were typically deterministic in nature.
-That is, given the same input, these systems would always provide the
-same output. They were transparent and easily interpretable because they
-followed clearly defined, pre-set rules (Gomber et al. 2018).
+developed by human experts, and were typically deterministic. Given the
+same input, these systems would always provide the same output. They
+were transparent and easily interpretable because they followed clearly
+defined, pre-set rules (Gomber et al. 2018).
 
 However, the effectiveness of rule-based systems was limited by their
 rigid, inflexible design. These systems were not designed to learn from
@@ -298,12 +307,12 @@ dynamic world of finance, which is characterised by evolving markets,
 changing regulatory landscapes, and unpredictable economic conditions
 (Dhar 2018).
 
-The desire for more adaptive, responsive systems led to the development
+The desire for more adaptive, responsive systems led to the developing
 of machine learning algorithms. Machine learning represented a
 significant advancement in the field of AI. Unlike rule-based systems,
 machine learning models could learn from data, identify patterns, and
-make predictions or decisions based on those patterns. In finance,
-machine learning algorithms found applications in a range of areas, from
+make predictions or decisions based on those patterns. Machine learning
+algorithms found applications in various areas of finance, from
 predicting stock prices to identifying fraudulent transactions (Athey
 2021).
 
@@ -314,8 +323,8 @@ complex ones like neural networks, introduced a level of opacity and
 complexity that made it difficult for human users to understand how they
 made decisions (Rudin 2019). This lack of transparency and
 interpretability in machine learning systems became known as the `black
-box' problem and forms the backdrop against which the field of
-explainable AI has emerged.
+box' problem and formed the backdrop against which the field of
+explainable AI emerged.
 
 In summary, the past of AI in finance was marked by the transition from
 transparent but inflexible rule-based systems to powerful but opaque
@@ -328,29 +337,26 @@ following sections.
 \subsection{Present: The Rise of Machine Learning and
 XAI}\label{present-the-rise-of-machine-learning-and-xai}}
 
-Certainly, here's an expanded version of the ``Present'' section:
-
 In the present landscape, machine learning models, such as neural
 networks, decision trees, and support vector machines, have become
-integral parts of financial institutions. These models perform a variety
-of tasks, including credit scoring, fraud detection, algorithmic
-trading, portfolio optimization, and customer segmentation, among others
-(Athey 2021).
+integral parts of financial institutions. These models perform various
+tasks, including credit scoring, fraud detection, algorithmic trading,
+portfolio optimisation, and customer segmentation (Athey 2021).
 
 Despite their efficiency and sophistication, these models often work as
 `black boxes,' where the internal decision-making process is obscured
-from the users. This opaqueness can pose considerable challenges. On a
-practical level, it hinders human users, such as loan officers or
-portfolio managers, from understanding and trusting the model's
-decisions. On a regulatory level, it poses problems for accountability
-and compliance, especially in jurisdictions where decisions affecting
+from the users. This opaqueness can pose considerable challenges. For
+example, it hinders human users, such as loan officers or portfolio
+managers, from understanding and trusting the model's decisions. In
+addition, it poses problems for accountability and compliance on a
+regulatory level, especially in jurisdictions where decisions affecting
 individuals must be explainable (Rudin 2019).
 
-Enter the field of Explainable Artificial Intelligence (XAI), which
-seeks to make AI's decision-making process more transparent and
-interpretable. A variety of techniques fall under the umbrella of XAI,
-and these can be broadly classified into two categories: model-specific
-methods and model-agnostic methods (Molnar 2020).
+Enter the Explainable Artificial Intelligence (XAI) field, which seeks
+to make AI's decision-making process more transparent and interpretable.
+Various techniques fall under the umbrella of XAI, and these can be
+broadly classified into model-specific methods and model-agnostic
+methods (Molnar 2020).
 
 Model-specific methods, such as coefficient interpretation in linear
 regression or feature importance in decision trees, provide insights
@@ -358,42 +364,41 @@ into how these specific models operate. However, their application is
 limited to the particular model types for which they were developed
 (Molnar 2020).
 
-Model-agnostic methods, on the other hand, can be applied to any machine
-learning model. They seek to provide explanations for individual
+Model-agnostic methods, on the other hand, can be applied to any
+machine-learning model. They seek to provide explanations for individual
 predictions regardless of the complexity or type of the underlying
 model. Examples of these techniques include Local Interpretable
 Model-Agnostic Explanations (LIME) and SHapley Additive exPlanations
 (SHAP). LIME offers explanations by approximating the prediction of a
 complex model with a simpler, locally-fitted model around the prediction
-point (Ribeiro, Singh, \& Guestrin, 2016). SHAP, meanwhile, allocates
-the contribution of each feature to the prediction for individual data
-points, based on concepts from cooperative game theory (Lundberg and Lee
-2017).
+point (Ribeiro, Singh, \& Guestrin, 2016). Meanwhile, SHAP allocates
+each feature's contribution to the prediction for individual data points
+based on concepts from cooperative game theory (Lundberg and Lee 2017).
 
 Yet, despite these advancements, achieving true explainability in AI
 remains a significant challenge. Many of these methods provide post-hoc
-explanations, which attempt to interpret the model's behavior after it
-has been trained. This process often involves a trade-off between
-accuracy and interpretability, with more complex models offering greater
-accuracy but less interpretability (Bhatt, Xiang, and Sharma 2020).
+explanations, which attempt to interpret the model's behaviour after
+training. This process often involves a trade-off between accuracy and
+interpretability, with more complex models offering greater accuracy but
+less interpretability (Bhatt, Xiang, and Sharma 2020).
 
 Moreover, explainability is not just a technical problem but also a
-human-centered one. The effectiveness of an explanation largely depends
+human-centred one. The effectiveness of an explanation largely depends
 on the recipient's perspective and the context in which it is given
-(\textbf{Mill?}) (Miller, 2019). What may be a satisfactory explanation
+(\textbf{Mill?}) (Miller, 2019). For example, a satisfactory explanation
 to a data scientist might be incomprehensible to a loan officer or a
-customer, indicating that the development of XAI needs to take into
-account the human factors of understandability and trust.
+customer, indicating that the development of XAI needs to consider the
+human factors of understandability and trust.
 
 In conclusion, the present state of XAI in finance is marked by
-considerable advancements, but also by ongoing challenges. The shift
-towards more transparent and interpretable AI models is underway, with
-various methods being developed and applied. However, achieving a
-balance between the complexity (and thereby, the performance) of models
-and their interpretability remains a significant hurdle. As we look
-towards the future, it is crucial that these challenges are addressed,
-and XAI continues to evolve to meet the demands of transparency and
-interpretability in the financial industry.
+considerable advancements and ongoing challenges. The shift towards more
+transparent and interpretable AI models is underway, with various
+methods being developed and applied. However, balancing models'
+complexity (and, thereby, performance) and their interpretability
+remains a significant hurdle. As we look towards the future, it is
+crucial that these challenges are addressed and XAI continues to evolve
+to meet the demands of transparency and interpretability in the
+financial industry.
 
 \hypertarget{prospects-the-future-of-xai-in-finance}{%
 \subsection{Prospects: The Future of XAI in
@@ -401,73 +406,70 @@ Finance}\label{prospects-the-future-of-xai-in-finance}}
 
 As we move into the future, the demand for transparency and
 interpretability in AI systems within the finance sector is expected to
-grow. The prospective advancements and challenges in the field of XAI
-reflect this.
+grow. The future advancements and challenges in the field of XAI reflect
+this.
 
 One significant direction for future research and development is
-integrating explainability directly into the model-building process,
+integrating explainability directly into the model-building process
 rather than treating it as an afterthought. This approach, often called
-intrinsic explainability, involves building models that are naturally
-interpretable, such as explainable boosting machines or interpretable
-decision sets (Lakkaraju, Bach, and Leskovec 2016; Lou, Caruana, and
-Gehrke 2012). The development of such models can help mitigate the
-trade-off between accuracy and interpretability that characterizes
-post-hoc explanation methods.
+intrinsic explainability, involves building naturally interpretable
+models, such as explainable boosting machines or interpretable decision
+sets (Lakkaraju, Bach, and Leskovec 2016; Lou, Caruana, and Gehrke
+2012). Developing such models can help mitigate the trade-off between
+accuracy and interpretability that characterises post-hoc explanation
+methods.
 
 Furthermore, as the field of XAI evolves, it will be essential to focus
 on the users' perspective. What constitutes a `good' explanation can
 vary based on the recipient and the context. Therefore, future XAI
-methods should consider tailoring explanations to different users' needs
-and capabilities. They should also address how to best communicate these
-explanations to ensure they are understandable and useful (Miller,
-2019).
+methods should tailor answers to different users' needs and
+capabilities. They should also address how to communicate these
+explanations best to ensure they are understandable and valuable
+(Miller, 2019).
 
-Moreover, as AI and XAI become more commonplace in finance, it's likely
-that regulations will evolve to address the new challenges they present.
-The European Union's General Data Protection Regulation (GDPR) has
-already introduced a `right to explanation', where individuals can ask
-for explanations of decisions made by automated systems that affect them
+Moreover, as AI and XAI become more commonplace in finance, regulations
+will likely evolve to address their new challenges. For example, the
+European Union's General Data Protection Regulation (GDPR) has already
+introduced a `right to explanation', where individuals can ask for
+explanations of decisions made by automated systems that affect them
 (Goodman and Flaxman 2017). In the future, we might see more regulations
-like these, requiring financial institutions to provide clear,
-understandable explanations for AI-based decisions.
+requiring financial institutions to provide clear, understandable
+explanations for AI-based decisions.
 
-However, implementing such regulations comes with its own challenges.
-Regulators will need to define what constitutes an `explanation' and a
-`decision' in the context of AI. They will also need to set standards
-for how detailed and understandable these explanations must be (Edwards
-and Veale 2017).
+However, implementing such regulations comes with its challenges. For
+example, regulators will need to define what constitutes an
+`explanation' and a `decision' in the context of AI. They will also need
+to set standards for how detailed and understandable these explanations
+must be (Edwards and Veale 2017).
 
 In summary, the future of XAI in finance is ripe with opportunities for
 making AI decision-making more transparent and accountable. However, it
-also presents challenges that need to be addressed through continued
+also presents challenges that must be addressed through continued
 research, development, and thoughtful regulation.
 
-\hypertarget{methodology}{%
-\section{Methodology}\label{methodology}}
+\hypertarget{confronting-econometrics-with-xai}{%
+\section{Confronting Econometrics with
+XAI}\label{confronting-econometrics-with-xai}}
 
-\hypertarget{econometrics-and-xai}{%
-\subsection{Econometrics and XAI}\label{econometrics-and-xai}}
-
-Explainable AI (XAI) could certainly play a significant role in
+Explainable AI (XAI) could undoubtedly play a significant role in
 improving the field of econometrics, which is the application of
-statistical methods to economic data in order to give empirical content
-to economic relations.
+statistical methods to economic data to give empirical content to
+economic relations.
 
 Traditionally, econometric models have been designed to be inherently
 interpretable, as they often depend on linear relationships and other
-simplistic assumptions to ensure that the parameters of the model can be
+simplistic assumptions to ensure that the model's parameters can be
 easily interpreted. However, these assumptions can be limiting, as they
 might not fully capture the complexities of real-world economic
 phenomena.
 
-With the advent of machine learning, econometricians have been able to
-create models that can learn complex patterns from data, leading to more
-accurate predictions. But the drawback is that these models are often
-`black boxes,' making it difficult to understand how they make
-decisions.
+With the advent of machine learning, econometricians have created models
+that can learn complex patterns from data, leading to more accurate
+predictions. But the drawback is that these models are often `black
+boxes,' making it difficult to understand how they make decisions.
 
 This is where XAI comes in. By using techniques developed under the
-umbrella of XAI, econometricians could make their machine learning
+umbrella of XAI, econometricians could make their machine-learning
 models more transparent, allowing them to understand how each input
 variable contributes to the model's predictions. This increased
 transparency could make these models more acceptable to economists and
@@ -475,35 +477,33 @@ policymakers, who need to understand the decision-making process to make
 informed decisions.
 
 For instance, SHapley Additive exPlanations (SHAP) and Local
-Interpretable Model-agnostic Explanations (LIME) are two such techniques
-that could be applied to make machine learning models more
-interpretable. These techniques provide explanations for individual
-predictions, helping to understand the contributions of different
-features to the model's output.
+Interpretable Model-agnostic Explanations (LIME) could be applied to
+make machine learning models more interpretable. These techniques
+explain individual predictions, helping to understand the contributions
+of different features to the model's output.
 
-In addition to improving model transparency, XAI could also help address
-some of the statistical challenges in econometrics. For example, XAI
-could help econometricians understand the variable importance in their
-models, which could be useful in addressing issues related to
-multicollinearity, where independent variables in a regression model are
-highly correlated.
+In addition to improving model transparency, XAI could help address some
+statistical challenges in econometrics. For example, XAI could help
+econometricians understand the variable importance in their models,
+which could help address issues related to multicollinearity, where
+independent variables in a regression model are highly correlated.
 
 In conclusion, XAI holds considerable potential in improving
-econometrics, particularly as the field increasingly incorporates
-machine learning models. By making these models more transparent, XAI
-can help econometricians and policymakers better understand and trust
-the predictions derived from these models, which in turn can lead to
-better decision-making.
+econometrics, mainly as the field increasingly incorporates machine
+learning models. Furthermore, by making these models more transparent,
+XAI can help econometricians and policymakers better understand and
+trust the predictions derived from these models, leading to better
+decision-making.
 
 \hypertarget{shapley-values-versus-ols-regression-coefficients}{%
-\subsubsection{Shapley values versus OLS regression
+\subsection{Shapley values versus OLS regression
 coefficients}\label{shapley-values-versus-ols-regression-coefficients}}
 
-Absolutely, let's explore the analogy between Shapley values and the
-coefficients in a linear regression model.
+In a linear regression model, let's explore the analogy between Shapley
+values and the coefficients.
 
 In a linear regression model, each predictor variable is assigned a
-coefficient that represents its partial effect on the outcome variable,
+coefficient representing its partial effect on the outcome variable,
 controlling for all other predictors. The coefficient can be interpreted
 as the expected change in the outcome variable for a one-unit change in
 the predictor, holding all other predictors constant.
@@ -511,29 +511,28 @@ the predictor, holding all other predictors constant.
 Analogously, the Shapley value for a player in a cooperative game
 represents the average contribution of the player to the worth of all
 possible coalitions that the player can be a part of. The Shapley value
-takes into account all possible ways in which the coalition can be
-formed and averages over them.
+considers all possible ways the coalition can be formed and averages
+over them.
 
 In both cases, the goal is to fairly distribute some total quantity (the
-total worth of the grand coalition in a cooperative game, or the total
+total worth of the grand coalition in a cooperative game or the total
 variance of the outcome variable in a linear regression model) among
 different contributors (the players in a cooperative game, or the
 predictor variables in a linear regression model).
 
-However, there are important differences as well. While linear
+However, there are significant differences as well. While linear
 regression assumes a specific linear and additive form for the
 relationship between predictors and the outcome, Shapley values make no
 such assumption. Shapley values can handle any type of game, including
 non-cooperative games and games with complex interactions between
 players.
 
-Also, the computation of Shapley values takes into account all possible
-orders in which players can join the coalition, reflecting the idea that
-the contribution of a player may depend on which other players are
-already in the coalition. In contrast, linear regression coefficients
-are typically computed using a method (like ordinary least squares) that
-does not consider different orders of entering the predictors into the
-model.
+Also, the computation of Shapley values considers all possible orders in
+which players can join the coalition, reflecting the idea that a
+player's contribution may depend on which other players are already in
+the coalition. In contrast, linear regression coefficients are typically
+computed using a method (like ordinary least squares) that does not
+consider different orders of entering the predictors into the model.
 
 In the context of explainable AI, the Shapley value concept has been
 applied to machine learning models to compute the contribution of each
@@ -543,12 +542,12 @@ coefficients of a linear model, especially for complex models that
 capture non-linear and interactive effects.
 
 \hypertarget{coalition-game-and-shapley-values}{%
-\subsubsection{Coalition game and shapley
+\subsubsection{Coalition game and Shapley
 values}\label{coalition-game-and-shapley-values}}
 
-To fix ideas, let's consider a simple cooperative game involving three
-players: A, B, and C. The worth of each coalition of players is given by
-a characteristic function v:
+Let's consider a simple cooperative game involving three players: A, B,
+and C, to fix ideas. A characteristic function v gives the worth of each
+coalition of players:
 
 \begin{itemize}
 \tightlist
@@ -577,7 +576,7 @@ to the coalition.
 The Shapley value is one way to do this. For each player, it computes
 the average marginal contribution of the player to all possible
 coalitions. This is done by considering all permutations of the players
-and for each permutation, adding up the marginal contributions of the
+and, for each permutation, adding up the marginal contributions of the
 player when they join the coalition.
 
 \hypertarget{confronting-regression-coefficients-using-xai}{%
@@ -585,7 +584,7 @@ player when they join the coalition.
 XAI}\label{confronting-regression-coefficients-using-xai}}
 
 In a linear regression model, each predictor variable is assigned a
-coefficient that represents its partial effect on the outcome variable,
+coefficient representing its partial effect on the outcome variable,
 controlling for all other predictors. The coefficient can be interpreted
 as the expected change in the outcome variable for a one-unit change in
 the predictor, holding all other predictors constant.
@@ -593,29 +592,28 @@ the predictor, holding all other predictors constant.
 Analogously, the Shapley value for a player in a cooperative game
 represents the average contribution of the player to the worth of all
 possible coalitions that the player can be a part of. The Shapley value
-takes into account all possible ways in which the coalition can be
-formed and averages over them.
+considers all possible ways the coalition can be formed and averages
+over them.
 
 In both cases, the goal is to fairly distribute some total quantity (the
-total worth of the grand coalition in a cooperative game, or the total
+total worth of the grand coalition in a cooperative game or the total
 variance of the outcome variable in a linear regression model) among
 different contributors (the players in a cooperative game, or the
 predictor variables in a linear regression model).
 
-However, there are important differences as well. While linear
+However, there are significant differences as well. While linear
 regression assumes a specific linear and additive form for the
 relationship between predictors and the outcome, Shapley values make no
 such assumption. Shapley values can handle any type of game, including
 non-cooperative games and games with complex interactions between
 players.
 
-Also, the computation of Shapley values takes into account all possible
-orders in which players can join the coalition, reflecting the idea that
-the contribution of a player may depend on which other players are
-already in the coalition. In contrast, linear regression coefficients
-are typically computed using a method (like ordinary least squares) that
-does not consider different orders of entering the predictors into the
-model.
+Also, the computation of Shapley values considers all possible orders in
+which players can join the coalition, reflecting the idea that a
+player's contribution may depend on which other players are already in
+the coalition. In contrast, linear regression coefficients are typically
+computed using a method (like ordinary least squares) that does not
+consider different orders of entering the predictors into the model.
 
 In the context of explainable AI, the Shapley value concept has been
 applied to machine learning models to compute the contribution of each
@@ -627,7 +625,7 @@ capture non-linear and interactive effects.
 \hypertarget{a-finance-example}{%
 \subsubsection{A finance example}\label{a-finance-example}}
 
-To steelman the case here is a simulated example. We'll use the
+To Steelman, the case here is a simulated example. We'll use the
 \texttt{sklearn} and \texttt{shap} libraries in Python to fit a linear
 regression model and a more complex model (Random Forest) to the
 simulated data. Then we'll use the shap library to compute SHAP values
@@ -648,9 +646,9 @@ data: g
 \ImportTok{import}\NormalTok{ pandas }\ImportTok{as}\NormalTok{ pd}
 \ImportTok{from}\NormalTok{ sklearn.linear\_model }\ImportTok{import}\NormalTok{ LinearRegression}
 \ImportTok{from}\NormalTok{ sklearn.ensemble }\ImportTok{import}\NormalTok{ RandomForestRegressor}
-\ImportTok{import}\NormalTok{ shap}
 \ImportTok{import}\NormalTok{ warnings}
 \NormalTok{warnings.filterwarnings(}\StringTok{"ignore"}\NormalTok{)}
+\ImportTok{import}\NormalTok{ shap}
 
 \CommentTok{\# Set a seed for reproducibility}
 \NormalTok{np.random.seed(}\DecValTok{0}\NormalTok{)}
@@ -676,46 +674,6 @@ data: g
 \InformationTok{\textasciigrave{}\textasciigrave{}\textasciigrave{}}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-/home/quinfer/.local/share/r-miniconda/envs/XAI/lib/python3.8/site-packages/shap/utils/_clustering.py:35: NumbaDeprecationWarning: [1mThe 'nopython' keyword argument was not supplied to the 'numba.jit' decorator. The implicit default value for this argument is currently False, but it will be changed to True in Numba 0.59.0. See https://numba.readthedocs.io/en/stable/reference/deprecation.html#deprecation-of-object-mode-fall-back-behaviour-when-using-jit for details.[0m
-  def _pt_shuffle_rec(i, indexes, index_mask, partition_tree, M, pos):
-/home/quinfer/.local/share/r-miniconda/envs/XAI/lib/python3.8/site-packages/shap/utils/_clustering.py:54: NumbaDeprecationWarning: [1mThe 'nopython' keyword argument was not supplied to the 'numba.jit' decorator. The implicit default value for this argument is currently False, but it will be changed to True in Numba 0.59.0. See https://numba.readthedocs.io/en/stable/reference/deprecation.html#deprecation-of-object-mode-fall-back-behaviour-when-using-jit for details.[0m
-  def delta_minimization_order(all_masks, max_swap_size=100, num_passes=2):
-/home/quinfer/.local/share/r-miniconda/envs/XAI/lib/python3.8/site-packages/shap/utils/_clustering.py:63: NumbaDeprecationWarning: [1mThe 'nopython' keyword argument was not supplied to the 'numba.jit' decorator. The implicit default value for this argument is currently False, but it will be changed to True in Numba 0.59.0. See https://numba.readthedocs.io/en/stable/reference/deprecation.html#deprecation-of-object-mode-fall-back-behaviour-when-using-jit for details.[0m
-  def _reverse_window(order, start, length):
-/home/quinfer/.local/share/r-miniconda/envs/XAI/lib/python3.8/site-packages/shap/utils/_clustering.py:69: NumbaDeprecationWarning: [1mThe 'nopython' keyword argument was not supplied to the 'numba.jit' decorator. The implicit default value for this argument is currently False, but it will be changed to True in Numba 0.59.0. See https://numba.readthedocs.io/en/stable/reference/deprecation.html#deprecation-of-object-mode-fall-back-behaviour-when-using-jit for details.[0m
-  def _reverse_window_score_gain(masks, order, start, length):
-/home/quinfer/.local/share/r-miniconda/envs/XAI/lib/python3.8/site-packages/shap/utils/_clustering.py:77: NumbaDeprecationWarning: [1mThe 'nopython' keyword argument was not supplied to the 'numba.jit' decorator. The implicit default value for this argument is currently False, but it will be changed to True in Numba 0.59.0. See https://numba.readthedocs.io/en/stable/reference/deprecation.html#deprecation-of-object-mode-fall-back-behaviour-when-using-jit for details.[0m
-  def _mask_delta_score(m1, m2):
-/home/quinfer/.local/share/r-miniconda/envs/XAI/lib/python3.8/site-packages/shap/links.py:5: NumbaDeprecationWarning: [1mThe 'nopython' keyword argument was not supplied to the 'numba.jit' decorator. The implicit default value for this argument is currently False, but it will be changed to True in Numba 0.59.0. See https://numba.readthedocs.io/en/stable/reference/deprecation.html#deprecation-of-object-mode-fall-back-behaviour-when-using-jit for details.[0m
-  def identity(x):
-/home/quinfer/.local/share/r-miniconda/envs/XAI/lib/python3.8/site-packages/shap/links.py:10: NumbaDeprecationWarning: [1mThe 'nopython' keyword argument was not supplied to the 'numba.jit' decorator. The implicit default value for this argument is currently False, but it will be changed to True in Numba 0.59.0. See https://numba.readthedocs.io/en/stable/reference/deprecation.html#deprecation-of-object-mode-fall-back-behaviour-when-using-jit for details.[0m
-  def _identity_inverse(x):
-/home/quinfer/.local/share/r-miniconda/envs/XAI/lib/python3.8/site-packages/shap/links.py:15: NumbaDeprecationWarning: [1mThe 'nopython' keyword argument was not supplied to the 'numba.jit' decorator. The implicit default value for this argument is currently False, but it will be changed to True in Numba 0.59.0. See https://numba.readthedocs.io/en/stable/reference/deprecation.html#deprecation-of-object-mode-fall-back-behaviour-when-using-jit for details.[0m
-  def logit(x):
-/home/quinfer/.local/share/r-miniconda/envs/XAI/lib/python3.8/site-packages/shap/links.py:20: NumbaDeprecationWarning: [1mThe 'nopython' keyword argument was not supplied to the 'numba.jit' decorator. The implicit default value for this argument is currently False, but it will be changed to True in Numba 0.59.0. See https://numba.readthedocs.io/en/stable/reference/deprecation.html#deprecation-of-object-mode-fall-back-behaviour-when-using-jit for details.[0m
-  def _logit_inverse(x):
-/home/quinfer/.local/share/r-miniconda/envs/XAI/lib/python3.8/site-packages/shap/utils/_masked_model.py:363: NumbaDeprecationWarning: [1mThe 'nopython' keyword argument was not supplied to the 'numba.jit' decorator. The implicit default value for this argument is currently False, but it will be changed to True in Numba 0.59.0. See https://numba.readthedocs.io/en/stable/reference/deprecation.html#deprecation-of-object-mode-fall-back-behaviour-when-using-jit for details.[0m
-  def _build_fixed_single_output(averaged_outs, last_outs, outputs, batch_positions, varying_rows, num_varying_rows, link, linearizing_weights):
-/home/quinfer/.local/share/r-miniconda/envs/XAI/lib/python3.8/site-packages/shap/utils/_masked_model.py:385: NumbaDeprecationWarning: [1mThe 'nopython' keyword argument was not supplied to the 'numba.jit' decorator. The implicit default value for this argument is currently False, but it will be changed to True in Numba 0.59.0. See https://numba.readthedocs.io/en/stable/reference/deprecation.html#deprecation-of-object-mode-fall-back-behaviour-when-using-jit for details.[0m
-  def _build_fixed_multi_output(averaged_outs, last_outs, outputs, batch_positions, varying_rows, num_varying_rows, link, linearizing_weights):
-/home/quinfer/.local/share/r-miniconda/envs/XAI/lib/python3.8/site-packages/shap/utils/_masked_model.py:428: NumbaDeprecationWarning: [1mThe 'nopython' keyword argument was not supplied to the 'numba.jit' decorator. The implicit default value for this argument is currently False, but it will be changed to True in Numba 0.59.0. See https://numba.readthedocs.io/en/stable/reference/deprecation.html#deprecation-of-object-mode-fall-back-behaviour-when-using-jit for details.[0m
-  def _init_masks(cluster_matrix, M, indices_row_pos, indptr):
-/home/quinfer/.local/share/r-miniconda/envs/XAI/lib/python3.8/site-packages/shap/utils/_masked_model.py:439: NumbaDeprecationWarning: [1mThe 'nopython' keyword argument was not supplied to the 'numba.jit' decorator. The implicit default value for this argument is currently False, but it will be changed to True in Numba 0.59.0. See https://numba.readthedocs.io/en/stable/reference/deprecation.html#deprecation-of-object-mode-fall-back-behaviour-when-using-jit for details.[0m
-  def _rec_fill_masks(cluster_matrix, indices_row_pos, indptr, indices, M, ind):
-/home/quinfer/.local/share/r-miniconda/envs/XAI/lib/python3.8/site-packages/shap/maskers/_tabular.py:186: NumbaDeprecationWarning: [1mThe 'nopython' keyword argument was not supplied to the 'numba.jit' decorator. The implicit default value for this argument is currently False, but it will be changed to True in Numba 0.59.0. See https://numba.readthedocs.io/en/stable/reference/deprecation.html#deprecation-of-object-mode-fall-back-behaviour-when-using-jit for details.[0m
-  def _single_delta_mask(dind, masked_inputs, last_mask, data, x, noop_code):
-/home/quinfer/.local/share/r-miniconda/envs/XAI/lib/python3.8/site-packages/shap/maskers/_tabular.py:197: NumbaDeprecationWarning: [1mThe 'nopython' keyword argument was not supplied to the 'numba.jit' decorator. The implicit default value for this argument is currently False, but it will be changed to True in Numba 0.59.0. See https://numba.readthedocs.io/en/stable/reference/deprecation.html#deprecation-of-object-mode-fall-back-behaviour-when-using-jit for details.[0m
-  def _delta_masking(masks, x, curr_delta_inds, varying_rows_out,
-/home/quinfer/.local/share/r-miniconda/envs/XAI/lib/python3.8/site-packages/shap/maskers/_image.py:175: NumbaDeprecationWarning: [1mThe 'nopython' keyword argument was not supplied to the 'numba.jit' decorator. The implicit default value for this argument is currently False, but it will be changed to True in Numba 0.59.0. See https://numba.readthedocs.io/en/stable/reference/deprecation.html#deprecation-of-object-mode-fall-back-behaviour-when-using-jit for details.[0m
-  def _jit_build_partition_tree(xmin, xmax, ymin, ymax, zmin, zmax, total_ywidth, total_zwidth, M, clustering, q):
-/home/quinfer/.local/share/r-miniconda/envs/XAI/lib/python3.8/site-packages/shap/explainers/_partition.py:676: NumbaDeprecationWarning: [1mThe 'nopython' keyword argument was not supplied to the 'numba.jit' decorator. The implicit default value for this argument is currently False, but it will be changed to True in Numba 0.59.0. See https://numba.readthedocs.io/en/stable/reference/deprecation.html#deprecation-of-object-mode-fall-back-behaviour-when-using-jit for details.[0m
-  def lower_credit(i, value, M, values, clustering):
-[1mThe 'nopython' keyword argument was not supplied to the 'numba.jit' decorator. The implicit default value for this argument is currently False, but it will be changed to True in Numba 0.59.0. See https://numba.readthedocs.io/en/stable/reference/deprecation.html#deprecation-of-object-mode-fall-back-behaviour-when-using-jit for details.[0m
-[1mThe 'nopython' keyword argument was not supplied to the 'numba.jit' decorator. The implicit default value for this argument is currently False, but it will be changed to True in Numba 0.59.0. See https://numba.readthedocs.io/en/stable/reference/deprecation.html#deprecation-of-object-mode-fall-back-behaviour-when-using-jit for details.[0m
-IPython could not be loaded!
-\end{verbatim}
 
 Next, let's fit a linear regression model to the data:
 
@@ -766,8 +724,8 @@ Now let's fit a Random Forest model to the data and compute SHAP values:
 
 \begin{verbatim}
 
- 89%|==================  | 889/1000 [00:11<00:01]       
- 97%|=================== | 972/1000 [00:12<00:00]       
+ 85%|=================   | 847/1000 [00:11<00:01]       
+ 93%|=================== | 929/1000 [00:12<00:00]       
 
 Mean Absolute SHAP Values:
 Size: 0.0662061209562134
@@ -775,20 +733,20 @@ Value: 0.15558826181291682
 Momentum: 0.23316567312446296
 \end{verbatim}
 
-In this simulated example, the true model is linear, so the linear
-regression coefficients should be close to the true values, and the mean
-absolute SHAP values for the Random Forest model should also reflect the
-relative importance of the factors.
+In this simulated example, the actual model is linear, so the linear
+regression coefficients should be close to the actual values, and the
+mean absolute SHAP values for the Random Forest model should also
+reflect the relative importance of the factors.
 
 However, in real-world scenarios where the relationship between factors
 and asset returns might be non-linear or involve interactions, the
-Random Forest model could potentially provide better predictive
-accuracy, and the SHAP values could offer a more nuanced understanding
-of feature contributions.
+Random Forest model could provide better predictive accuracy, and the
+SHAP values could offer a more nuanced understanding of feature
+contributions.
 
-Sure, let's modify the above example to include non-linear and
-interaction effects. In this modified example, the true model is a
-polynomial model that includes square terms and an interaction term.
+Let's modify the above example to include non-linear and interaction
+effects. In this modified example, the true polynomial model includes
+square terms and an interaction term.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -856,8 +814,9 @@ Now let's fit a Random Forest model to the data and compute SHAP values:
 
 \begin{verbatim}
 
- 87%|=================   | 870/1000 [00:11<00:01]       
- 95%|=================== | 949/1000 [00:12<00:00]       
+ 83%|=================   | 830/1000 [00:11<00:02]       
+ 91%|==================  | 907/1000 [00:12<00:01]       
+ 99%|===================| 986/1000 [00:13<00:00]       
 
 Mean Absolute SHAP Values:
 Size: 0.3687139875766077
@@ -872,12 +831,11 @@ accuracy. The SHAP values for the Random Forest model offer a more
 nuanced understanding of feature contributions, taking into account the
 non-linear and interaction effects.
 
-Sure, let's create a scenario where the relationship between the factors
-and the return is non-linear. This is where Shapley values can
-potentially provide a more nuanced view compared to linear regression
-coefficients.
+Let's create a scenario where the relationship between the factors and
+the return is non-linear. This is where Shapley values can potentially
+provide a more nuanced view than linear regression coefficients.
 
-We will use a similar setup as before but introduce some interaction and
+We will use a similar setup but introduce some interaction and
 non-linearity in how the factors influence the return.
 
 \begin{Shaded}
@@ -929,11 +887,11 @@ Factor1:  1.0587623348271473
 Factor2:  2.4884202639370416
 \end{verbatim}
 
-In this example, we use a random forest regressor, which can handle
-non-linear and interaction effects among factors. This model is more
+In this example, we use a random forest regressor to handle non-linear
+and interaction effects among factors. However, this model is more
 complex than a simple linear regression, and the ``coefficients'' or
-feature importances do not give a clear measure of the contribution of
-each factor, especially when there is interaction and non-linearity.
+feature importances do not clearly measure each factor's contribution,
+especially when there is interaction and non-linearity.
 
 After training the model, we compute Shapley values for each
 observation. Shapley values have the potential to provide a more nuanced
@@ -942,63 +900,60 @@ each feature in all possible subsets of features. This can be especially
 helpful in scenarios where factors have interaction effects or
 contribute to the response in a non-linear way.
 
-As in the previous example, we calculate the mean absolute Shapley value
-for each factor across all observations. In a situation with interaction
+As in the previous example, we calculate each factor's mean absolute
+Shapley value across all observations. In a situation with interaction
 and non-linearity, these values provide a clearer picture of the average
 contribution of each factor to the return across all possible orders of
 inputting the factors into the model.
 
 The ability of Shapley values to handle interaction and non-linear
-effects is a powerful feature and can be crucial in scenarios where
-linear regression coefficients fail to provide a clear understanding of
-feature importance. This is especially true in finance, where the
-relationship between variables can often be complex and non-linear.
-
-Please note, you need to install the \texttt{shap} library if it is not
-already installed. You can do it using \texttt{pip\ install\ shap} in
-your terminal.
+effects is a powerful feature. It can be crucial in scenarios where
+linear regression coefficients fail to understand feature importance
+clearly. This is especially true in finance, where the relationship
+between variables can often be complex and non-linear.\footnote{A docker
+  image of the simulations can be provided upon request for replication
+  purposes.}
 
 \hypertarget{conclusion}{%
-\subsection{Conclusion}\label{conclusion}}
+\section{Conclusion}\label{conclusion}}
 
 As the application of AI in the financial sector continues to grow, so
-too does the need for transparency and interpretability in AI
+does the need for transparency and interpretability in AI
 decision-making. This paper has provided a critical analysis of the role
 of Explainable Artificial Intelligence (XAI) in finance, tracing its
-evolution from the past, analyzing its present state, and exploring its
+evolution from the past, analysing its present state, and exploring its
 prospects for the future.
 
 Historically, the financial sector witnessed a transition from
-rule-based AI systems to complex machine learning models. While these
-new models offered improved performance, they also introduced challenges
-concerning their transparency and interpretability. This shift set the
-stage for the emergence of XAI, aiming to shed light on the `black box'
-of AI.
+rule-based AI systems to complex machine learning models. However, while
+these new models offered improved performance, they also introduced
+challenges concerning transparency and interpretability. This shift set
+the stage for the emergence of XAI, aiming to shed light on the `black
+box' of AI.
 
-In the present, various XAI techniques, both model-specific and
-model-agnostic, have been developed and implemented in financial
-institutions. These techniques have shown promise in improving the
-interpretability of AI systems, enhancing user trust, and facilitating
-regulatory compliance. However, achieving a balance between model
-performance and interpretability remains a challenge. Additionally, the
-field is grappling with questions about what constitutes a `good'
-explanation and how to effectively communicate these explanations to
-different users.
+Various XAI techniques, both model-specific and model-agnostic, have
+been developed and implemented in financial institutions. These
+techniques have shown promise in improving the interpretability of AI
+systems, enhancing user trust, and facilitating regulatory compliance.
+However, achieving a balance between model performance and
+interpretability remains a challenge. Additionally, the field is
+grappling with questions about what constitutes a `good' explanation and
+how to communicate these explanations to different users effectively.
 
-Looking to the future, it is expected that XAI will continue to evolve,
+Looking to the future, XAI is expected to continue to evolve,
 integrating explainability directly into the model-building process and
 tailoring explanations to users' needs and contexts. At the same time,
 it is anticipated that regulations around AI and XAI will develop
 further, presenting new challenges and opportunities for the field.
 
-In conclusion, XAI represents a critical frontier in the integration of
-AI within finance. As we continue to navigate this frontier, it is vital
-that we remain committed to advancing the field, improving the
-transparency and interpretability of AI systems, and addressing the
-ethical, legal, and practical challenges that arise along the way. The
-journey to fully explainable AI in finance may be complex and fraught
-with challenges, but it is a journey that holds considerable promise for
-the future of the industry.
+In conclusion, XAI represents a critical frontier in integrating AI
+within finance. As we continue to navigate this frontier, we must remain
+committed to advancing the field, improving the transparency and
+interpretability of AI systems, and addressing the ethical, legal, and
+practical challenges that arise along the way. The journey to fully
+explainable AI in finance may be complex and fraught with challenges,
+but it is a journey that holds considerable promise for the future of
+the industry.
 
 \hypertarget{references}{%
 \subsection*{References}\label{references}}
