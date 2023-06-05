@@ -3,9 +3,7 @@ title: "Explaining AI in Finance: Past, Present, Prospects"
 author: 
   - name: Barry Quinn
     affiliation: Finance and AI Lab at Queen's University Belfast
-format: 
-  pdf: 
-    keep-tex: true
+format: html 
 bibliography: references.bib
 execute: 
   warning: false

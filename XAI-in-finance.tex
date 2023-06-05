@@ -203,7 +203,7 @@
 \urlstyle{same} % disable monospaced font for URLs
 \hypersetup{
   pdftitle={Explaining AI in Finance: Past, Present, Prospects},
-  pdfauthor={NO AUTHOR},
+  pdfauthor={Barry Quinn},
   colorlinks=true,
   linkcolor={blue},
   filecolor={Maroon},
@@ -212,37 +212,24 @@
   pdfcreator={LaTeX via pandoc}}
 
 \title{Explaining AI in Finance: Past, Present, Prospects}
-\author{NO AUTHOR}
+\author{Barry Quinn}
 \date{}
 
 \begin{document}
 \maketitle
 \begin{abstract}
-The proliferation of Artificial Intelligence (AI) in finance has
-revolutionized operational strategies. Yet, the challenge of
-interpretability, encapsulated in the concept of explainable AI (XAI),
-remains pivotal for its comprehensive adoption. This paper navigates the
-evolution of AI in finance, demonstrating the role and potential of XAI
-within this transformation. We trace the journey from primitive
-statistical methods to modern machine learning, addressing traditional
-models' inability to interpret intricate non-linear relationships in
-financial variables. We delve into XAI's role in prevalent financial
-applications like credit scoring and fraud detection, demonstrating how
-methods like Shapley values provide superior, nuanced inference compared
-to traditional linear regression models in complex scenarios. A vital
-discussion is the implications of upcoming EU regulations, emphasizing
-the need for further XAI research to bridge the gap between intricate
-model decision-making and human interpretability. This narrative is
-bolstered by several simulated examples, comparing the explanatory power
-of Shapley values with conventional regression coefficients in the
-context of asset pricing, demonstrating the effectiveness of XAI in
-financE In conclusion, the paper accentuates the crucial role of XAI in
-enhancing trust in AI systems within finance, promoting more informed
-and responsible decision-making. Through this, we underline the promise
-of XAI as a facilitator of transparency, reliability, and ultimately,
-the wider acceptance of AI in the finance industry.
+This paper explores the journey of AI in finance, with a particular
+focus on the crucial role and potential of Explainable AI (XAI). We
+trace AI's evolution from early statistical methods to sophisticated
+machine learning, highlighting XAI's role in popular financial
+applications. The paper underscores the superior interpretability of
+methods like Shapley values compared to traditional linear regression in
+complex financial scenarios. It emphasizes the necessity of further XAI
+research, given forthcoming EU regulations. The paper demonstrates,
+through simulations, that XAI enhances trust in AI systems, fostering
+more responsible decision-making within finance.
 \end{abstract}
-\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[frame hidden, enhanced, sharp corners, interior hidden, borderline west={3pt}{0pt}{shadecolor}, boxrule=0pt, breakable]}{\end{tcolorbox}}\fi
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[boxrule=0pt, borderline west={3pt}{0pt}{shadecolor}, interior hidden, breakable, enhanced, sharp corners, frame hidden]}{\end{tcolorbox}}\fi
 
 \hypertarget{introduction}{%
 \section{Introduction}\label{introduction}}
@@ -724,8 +711,8 @@ Now let's fit a Random Forest model to the data and compute SHAP values:
 
 \begin{verbatim}
 
- 85%|=================   | 847/1000 [00:11<00:01]       
- 93%|=================== | 929/1000 [00:12<00:00]       
+ 90%|==================  | 897/1000 [00:11<00:01]       
+ 98%|===================| 979/1000 [00:12<00:00]       
 
 Mean Absolute SHAP Values:
 Size: 0.0662061209562134
@@ -814,9 +801,9 @@ Now let's fit a Random Forest model to the data and compute SHAP values:
 
 \begin{verbatim}
 
- 83%|=================   | 830/1000 [00:11<00:02]       
- 91%|==================  | 907/1000 [00:12<00:01]       
- 99%|===================| 986/1000 [00:13<00:00]       
+ 80%|================    | 799/1000 [00:11<00:02]       
+ 88%|==================  | 876/1000 [00:12<00:01]       
+ 96%|=================== | 955/1000 [00:13<00:00]       
 
 Mean Absolute SHAP Values:
 Size: 0.3687139875766077
