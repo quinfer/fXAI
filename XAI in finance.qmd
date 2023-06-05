@@ -1,4 +1,5 @@
 ---
+git---
 title: "Explaining AI in Finance: Past, Present, Prospects"
 author: 
   - name: NO AUTHOR
